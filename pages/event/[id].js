@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
-import { makeStyles } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
-import LuxonUtils from '@date-io/luxon'
 import { DateTime } from 'luxon'
-import Button from '@material-ui/core/Button/Button'
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker
-} from '@material-ui/pickers'
-import Grid from '@material-ui/core/Grid'
 import { useStyles } from '../../styles/specificeventMaterialcss'
 import Typography from '@material-ui/core/Typography'
-import UploadImage from '../../components/ImageUploader/index'
 import EventDisplay from '../../components/EventDisplay'
 import EventForm from '../../components/EventForm'
 import styles from '../../styles/event.module.css'
 
-// ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
+
+// ENVIRONMENT VARIABLES
 import { serverUrl } from '../../environment'
-import ButtonGeneral from '../../components/Button/Button'
 
 export default function SpecificEventPage({ event, ticketCount }) {
     const [editing, setEditing] = useState(false)
@@ -36,26 +25,19 @@ export default function SpecificEventPage({ event, ticketCount }) {
     const [availableTickets, setAvailableTickets] = useState(
         event.numtickets - ticketCount
     )
-
     const [title, setTitle] = useState(event.title)
     const [date, setDate] = useState(event.date)
-
     const [timeObj, setTime] = useState(DateTime.fromSQL(event.time))
-
     const [description, setDescription] = useState(event.description)
     const [speaker, setSpeaker] = useState(event.speaker)
     const [location, setLocation] = useState(event.location)
     const [numtickets, setNumTickets] = useState(event.numtickets)
     const [eventAttendeeCount, setEventAttendeeCount] = useState(ticketCount)
+    const [previewSource, setPreviewSource] = useState(event.banner)
+    const [isRegistered, setIsRegistered] = useState(false)
 
     const router = useRouter()
     const refreshData = () => router.replace(router.asPath)
-    /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
-
-    const [previewSource, setPreviewSource] = useState(event.banner)
-    /* ------------------------------------------------------------------------------------------------------------------------------------- */
-
-    const [isRegistered, setIsRegistered] = useState(false)
 
     useEffect(() => {
         async function getIsRegistered() {
@@ -126,7 +108,6 @@ export default function SpecificEventPage({ event, ticketCount }) {
     const handleFileInputChange = (e) => {
         const file = e.target.files[0]
         previewImage(file)
-        //setBanner(file)
     }
 
     const previewImage = (file) => {
@@ -328,135 +309,6 @@ export default function SpecificEventPage({ event, ticketCount }) {
                     setEditing={setEditing}
                     setPreviewSource={setPreviewSource}
                 />
-                // <form
-                //     autoComplete="off"
-                //     noValidate
-                //     onSubmit={(event) => handleSubmit(event)}
-                // >
-                //     <TextField
-                //         id="title"
-                //         label="Title"
-                //         placeholder="Enter title of event"
-                //         variant="outlined"
-                //         value={title}
-                //         InputProps={{ classes: { input: classes.title } }}
-                //         onChange={(e) => setTitle(e.target.value)}
-                //         helperText={
-                //             title.length < 1 ? 'Please enter new title' : ' '
-                //         }
-                //     />
-                //     <MuiPickersUtilsProvider utils={LuxonUtils}>
-                //         <Grid container justify="space-around" direction="row">
-                //             <KeyboardDatePicker
-                //                 margin="normal"
-                //                 id="date"
-                //                 label="Date"
-                //                 format="dd/MM/yyyy"
-                //                 value={date}
-                //                 onChange={(d) => handleDateChange(d)}
-                //                 KeyboardButtonProps={{
-                //                     'aria-label': 'change date'
-                //                 }}
-                //                 className={classes.datetime}
-                //             />
-
-                //             <KeyboardTimePicker
-                //                 margin="normal"
-                //                 id="time"
-                //                 label="Time"
-                //                 value={timeObj}
-                //                 onChange={(t) => handleTimeChange(t)}
-                //                 KeyboardButtonProps={{
-                //                     'aria-label': 'change time'
-                //                 }}
-                //                 className={classes.datetime}
-                //             />
-                //         </Grid>
-                //     </MuiPickersUtilsProvider>
-
-                //     <TextField
-                //         id="description"
-                //         label="Description"
-                //         multiline
-                //         rows={2}
-                //         value={description}
-                //         plceholder="Enter Event Title"
-                //         variant="outlined"
-                //         onChange={(e) => setDescription(e.target.value)}
-                //         InputProps={{ classes: { input: classes.description } }}
-                //         helperText={
-                //             description.length < 1 ? 'Please enter text' : ' '
-                //         }
-                //     />
-                //     <TextField
-                //         id="speaker"
-                //         label="Speaker"
-                //         multiline
-                //         rows={4}
-                //         value={speaker}
-                //         placeholder="Enter the speakers"
-                //         variant="outlined"
-                //         InputProps={{ classes: { input: classes.speaker } }}
-                //         onChange={(e) => setSpeaker(e.target.value)}
-                //         helperText={
-                //             speaker.length < 1 ? 'Please enter text' : ' '
-                //         }
-                //     />
-                //     <TextField
-                //         id="location"
-                //         label="Location"
-                //         value={location}
-                //         multiline
-                //         rows={4}
-                //         placeholder="Enter location of event"
-                //         variant="outlined"
-                //         InputProps={{ classes: { input: classes.location } }}
-                //         onChange={(e) => setLocation(e.target.value)}
-                //         helperText={
-                //             location.length < 1 ? 'Please enter text' : ' '
-                //         }
-                //     />
-                //     <TextField
-                //         className={classes.tickets}
-                //         id="tickets"
-                //         label="Tickets"
-                //         value={numtickets}
-                //         multiline
-                //         rows={4}
-                //         placeholder="Enter number of tickets available"
-                //         variant="outlined"
-                //         InputProps={{
-                //             classes: { input: classes.numtickets }
-                //         }}
-                //         onChange={(e) => setNumTickets(e.target.value)}
-                //         helperText={
-                //             /^\d+$/.test(numtickets) === false
-                //                 ? 'Please enter a number'
-                //                 : ' '
-                //         }
-                //     />
-
-                //     <UploadImage
-                //         handleFileInputChange={handleFileInputChange}
-                //         previewSource={previewSource}
-                //         setPreviewSource={setPreviewSource}
-                //     />
-
-                //     <ButtonGeneral
-                //         // id="button"
-                //         // type="submit"
-                //         // variant="contained"
-                //         // color="primary"
-                //         // size="large"
-                //         // className={classes.button}
-                //         // disabled={!previewSource}
-                //         text={'SAVE'}
-                //     />
-                //     <ButtonGeneral
-                //         text={'CANCEL'}
-                //         onClick={() => setEditing(false)}
-                //     />
-                // </form>
             )}
         </React.Fragment>
     )

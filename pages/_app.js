@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { ProtectedRouteAndRoleProvider } from '../components/ProtectedRouteAndRoleProvider'
 import { SearchProvider } from '../contexts/search'
 import Wrapper from '../components/Wrapper/index'
 import Head from 'next/head'
-import PropTypes from 'prop-types'
+
 
 // STYLES
 import '../styles/globals.css'
@@ -24,15 +24,15 @@ import {
 
 export default function MyApp(props) {
     const { Component, pageProps } = props
-    const [filter, setFilter] = useState('')
+    
 
-    React.useEffect(() => {
+    /* React.useEffect(() => {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side')
         if (jssStyles) {
             jssStyles.parentElement.removeChild(jssStyles)
         }
-    }, [])
+    }, []) */
 
     return (
         <Auth0Provider
@@ -79,7 +79,3 @@ export default function MyApp(props) {
     )
 }
 
-MyApp.propTypes = {
-    Component: PropTypes.elementType.isRequired,
-    pageProps: PropTypes.object.isRequired
-}

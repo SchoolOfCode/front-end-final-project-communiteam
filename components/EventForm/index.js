@@ -36,7 +36,8 @@ export default function EventForm({
     setLocation,
     setNumTickets,
     setEditing,
-    setPreviewSource
+    setPreviewSource,
+    buttonState
 }) {
     const classes = useStyles()
     const formClasses = useFormStyles()
@@ -134,6 +135,7 @@ export default function EventForm({
                             className={formClasses.icons}
                             aria-label="Save"
                             type="submit"
+                            disabled={buttonState}
                         >
                             <SaveIcon />
                         </IconButton>
