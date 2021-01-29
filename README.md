@@ -3,7 +3,7 @@
 Communiteam presents App name here is full stack web-based event management application created by School of Code Bootcampers 4.0. This repo consist of the front end of the application. For the backend of this application head to this [reposiory](https://github.com/SchoolOfCode/back-end-final-project-communiteam).
 
 <img width="1433" alt="app" src="img here">
-or GIF?
+
 
 ## Project Idea - Why?
 
@@ -15,8 +15,7 @@ We took on the challenge of improving the organisation and delivery of community
 -   check trello
 
 ## Live Project
-
-Link here
+eventure.vercel.app
 
 ## Getting Started
 
@@ -46,8 +45,6 @@ npm i
 4. For more help on setting up Auth0 with Next.js, https://auth0.com/blog/ultimate-guide-nextjs-authentication-auth0/
 
 ## Running Locally
-
-sgfsfgs
 
 ```bash
 npm run dev
