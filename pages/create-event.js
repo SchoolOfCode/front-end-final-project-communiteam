@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import { useRouter } from 'next/router'
 
-
 import { DateTime } from 'luxon'
 
 import { useStyles } from '../styles/CreateEventMaterialCSS'
@@ -78,12 +77,9 @@ function AdminEventPage() {
         }
     }
 
-    const classes = useStyles()
-
     const handleFileInputChange = (e) => {
         const file = e.target.files[0]
         previewImage(file)
-        //setBanner(file)
     }
 
     const previewImage = (file) => {
@@ -94,7 +90,6 @@ function AdminEventPage() {
             setPreviewSource(reader.result)
         }
     }
-    /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -138,15 +133,13 @@ function AdminEventPage() {
 
             const response = await fetch(` ${serverUrl}/org`, requestOptions) //post request is sent to events listing
             const data = await response.json()
-
-            
         }
     }
     if (!Object.values(user)[0][0]) {
         return <Loading />
     }
     return (
-        <React.Fragment>
+        <>
             <div className={styles.contrastBackground}>
                 <Typography variant="h2">Create An Event</Typography>
             </div>
@@ -172,8 +165,7 @@ function AdminEventPage() {
                 setPreviewSource={setPreviewSource}
                 buttonState={buttonState}
             />
-            
-        </React.Fragment>
+        </>
     )
 }
 

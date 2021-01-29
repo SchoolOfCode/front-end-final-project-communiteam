@@ -129,7 +129,7 @@ function Home({ events, nextEvent }) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
     const res = await fetch(`${serverUrl}/events/date`)
     const { payload } = await res.json()
     const upcomingEvents = payload

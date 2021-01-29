@@ -1,9 +1,7 @@
-import { useState } from 'react'
+/* import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
 import { useStyles } from '../styles/events-page-materialCss'
-import { useAuth0 } from '@auth0/auth0-react'
 import styles from '../styles/events.module.css'
 // COMPONENTS
 import Typography from '@material-ui/core/Typography'
@@ -12,7 +10,7 @@ import TextField from '@material-ui/core/TextField'
 
 // ENVIRONMENT VARIABLES
 import { serverUrl } from '../environment'
-import { typography } from '@material-ui/system'
+
 
 function EventsPage({ events }) {
     const [filter, setFilter] = useState('')
@@ -62,18 +60,18 @@ function EventsPage({ events }) {
                         })}
                     </div>
                 ) : (
-                    <div>Loading events...</div>
+                    null
                 )}
             </main>
         </div>
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
     const res = await fetch(`${serverUrl}/events/date`)
     const { payload } = await res.json()
     const upcomingEvents = payload
     return { props: { events: upcomingEvents } }
 }
 
-export default EventsPage
+export default EventsPage */

@@ -47,7 +47,7 @@ export default function MyApp(props) {
         >
             <Wrapper>
                 <ProtectedRouteAndRoleProvider>
-                    <React.Fragment>
+                    <>
                         <Head>
                             <title>eVenture</title>
                             <meta
@@ -72,7 +72,7 @@ export default function MyApp(props) {
                             </SearchProvider>
                             <ConditionedRenderedFooter />
                         </ThemeProvider>
-                    </React.Fragment>
+                    </>
                 </ProtectedRouteAndRoleProvider>
             </Wrapper>
         </Auth0Provider>
